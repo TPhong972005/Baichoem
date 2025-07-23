@@ -38,15 +38,28 @@
   <br><br>
   <span id="resultmabenh"></span>
 ---câu 7
+    <input id="sdt" type="text" placeholder="vd:0*********">
+    <button id="btnsdt">Xác Nhận SDT</button>
+    <span id="loisdt"></span>
+    <br>
+---câu 8
   <input type="text" id="cccd" placeholder="Nhập CCCD hoặc CMND">
   <button id="btncccd">Kiểm tra</button>
   <br><br>
   <span id="resultcccd"></span>
----câu8
+---câu9
     <input id="mk" type="text" placeholder="Mật khẩu mạnh">
     <button id="btnmk">Xác Nhận Mật Khẩu</button>
     <span id="loimk"></span>
     <br>
+---câu 10
+    <input id="email" type="text" placeholder="Email">
+    <button id="btnemail">Xác Nhận</button>
+    <span id="loiemail"></span>
+---câu 11
+    <button onclick="checkall()">Kiểm tra tất cả</button>
+    <br><br>
+    <span id="resultall"></span>
 <script>
     var nameInput = document.getElementById("name");
     var btnCheck = document.getElementById("btnCheck");
@@ -162,6 +175,18 @@
     }
     btnmabenh.onclick = checkMaBenh;
 /// câu 7
+    var inputsdt = document.getElementById("sdt");
+    var btnsdt = document.getElementById("btnsdt");
+    var loisdt = document.getElementById("loisdt");
+
+    function checksdt() {
+    var pattern = /^0\d{9}$/;
+    var logic = pattern.test(inputsdt.value);
+    loisdt.innerText = logic ? 'Hợp lệ' : 'check your input';
+    }
+    btnsdt.onclick = checksdt;
+
+/// câu 8
     var cccd = document.getElementById("cccd");
     var btncccd = document.getElementById("btncccd");
     var resultcccd = document.getElementById("resultcccd");
@@ -178,8 +203,8 @@
         resultcccd.innerText = 'Sai định dạng. Phải gồm 9 hoặc 12 chữ số.';
       }
     }
-    btncccd.onclick = checkCCCD;
-/// câu 8
+    btncccd.onclick = checkCCCD
+/// câu 9
     var inputmk = document.getElementById("mk");
     var btnmk = document.getElementById("btnmk");
     var loimk = document.getElementById("loimk");
@@ -190,6 +215,31 @@
     loimk.innerText = logic ? 'Mật khẩu của bạn đã đạt yêu cầu' : 'Mật khẩu chưa mạnh';
     }
     btnmk.onclick = checkmk;
+/// câu 10
+    var inputemail = document.getElementById("email");
+    var btnemail = document.getElementById("btnemail");
+    var loiemail = document.getElementById("loiemail");
+
+    function checkemail() {
+    var pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/g;
+    var logic = pattern.test(inputemail.value.toLowerCase());
+    loiemail.innerText = logic ? 'hợp lệ' : 'check your input';
+}
+    btnemail.onclick = checkemail;
+/// câu 11
+    function checkall() {
+      checkname();
+      checkDate();
+      checkngay();
+      checkkh();
+      checkName();
+      checkMaBenh();
+      checksdt();
+      checkCCCD();
+      checkmk();
+      checkemail();
+    }
+
 </script>
 </body>
 </html>
