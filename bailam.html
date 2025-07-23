@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <input type="text" id="name" placeholder="Nhập dữ liệu">
+  <button id="btnCheck">Kiểm tra</button>
+  <br><br>
+  <span id="result"></span>
+---câu2
+  <input type="text" id="dateInput" placeholder="VD: 23-07-2025">
+  <button id="btnngay">Kiểm tra</button>
+  <br><br>
+  <span id="resultngay"></span>
+---câu 3
+  <input type="text" id="ngayinput" placeholder="VD: 23/07/2025">
+  <button id="btndate">Kiểm tra</button>
+  <br><br>
+  <span id="resultdate"></span>
+
+---câu 4
+  <input type="text" id="kh" placeholder="VD: 23-07-2025 hoặc 23/07/2025">
+  <button id="btnkh">Kiểm tra</button>
+  <br><br>
+  <span id="resultkh"></span>
+
+---câu 5
+  <input type="text" id="hoten" placeholder="VD: Nguyễn Văn A">
+  <button id="btnhoten">Kiểm tra</button>
+  <br><br>
+  <span id="resulthoten"></span>
+---câu 6
+  <input type="text" id="mabenh" placeholder="Nhập mã bệnh nhân">
+  <button id="btnmabenh">Kiểm tra</button>
+  <br><br>
+  <span id="resultmabenh"></span>
+---câu 7
+  <input type="text" id="cccd" placeholder="Nhập CCCD hoặc CMND">
+  <button id="btncccd">Kiểm tra</button>
+  <br><br>
+  <span id="resultcccd"></span>
+---câu8
+    <input id="mk" type="text" placeholder="Mật khẩu mạnh">
+    <button id="btnmk">Xác Nhận Mật Khẩu</button>
+    <span id="loimk"></span>
+    <br>
+<script>
+    var nameInput = document.getElementById("name");
+    var btnCheck = document.getElementById("btnCheck");
+    var result = document.getElementById("result");
+
+    function checkname() {
+        var dulieu = nameInput.value;
+        var isso = /\d/;
+        var ischuoi = /^[A-Za-z\s]+$/;
+
+        if (dulieu == '') {
+            result.innerText = 'Vui lòng nhập dữ liệu';
+        } else if (isso.test(dulieu)) {
+            result.innerText = 'Bạn đã nhập số';
+        } else if (ischuoi.test(dulieu)) {
+            result.innerText = 'Bạn đã nhập chuỗi';
+        } else {
+            result.innerText = 'Dữ liệu hợp lệ';
+        }
+    }
+    btnCheck.onclick = checkname;
+///
+    var dateInput = document.getElementById("dateInput");
+    var btnngay = document.getElementById("btnngay");
+    var resultngay = document.getElementById("resultngay");
+
+    function checkDate() {
+      var value = dateInput.value.trim();
+      var regexDate = /^(0[1-9]|[12][0-9]|3[01])[-](0[1-9]|1[0-2])[-](19|20)\d{2}$/;
+
+      if (value === '') {
+        resultngay.innerText = 'Vui lòng nhập ngày sinh.';
+      } else if (regexDate.test(value)) {
+        resultngay.innerText = 'Định dạng ngày hợp lệ.';
+      } else {
+        resultngay.innerText = 'Định dạng không hợp lệ. Đúng dạng: DD-MM-YYYY';
+      }
+    }
+   btnngay.onclick = checkDate;
+//// câu 3
+ var ngayinput = document.getElementById("ngayinput");
+    var btndate = document.getElementById("btndate");
+    var resultdate = document.getElementById("resultdate");
+
+    function checkngay() {
+      var value = ngayinput.value.trim();
+      var regexDate = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/;
+      if (value === '') {
+        resultdate.innerText = 'Vui lòng nhập ngày sinh.';
+      } else if (regexDate.test(value)) {
+        resultdate.innerText = 'Định dạng ngày hợp lệ.';
+      } else {
+        resultdate.innerText = 'Định dạng không hợp lệ. Đúng dạng: dd/mm/yyyy';
+      }
+    }
+    btndate.onclick = checkngay;
+/// câu 4
+    var kh = document.getElementById("kh");
+    var btnkh = document.getElementById("btnkh");
+    var resultkh = document.getElementById("resultkh");
+
+    function checkkh() {
+      var value = kh.value.trim();
+      var regex1 = /^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|1[0-2])\-(19|20)\d{2}$/;
+      var regex2 = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/;
+
+      if (value === '') {
+        resultkh.innerText = 'Vui lòng nhập ngày sinh.';
+      } else if (regex1.test(value) || regex2.test(value)) {
+        resultkh.innerText = 'Định dạng ngày hợp lệ.';
+      } else {
+        resultkh.innerText = 'Định dạng không hợp lệ. Đúng dạng: dd-mm-yyyy hoặc dd/mm/yyyy';
+      }
+    }
+    btnkh.onclick = checkkh;
+/// câu 5
+    var hoten = document.getElementById("hoten");
+    var btnhoten = document.getElementById("btnhoten");
+    var resulthoten = document.getElementById("resulthoten");
+
+    function checkName() {
+      var value = hoten.value.trim();
+      var regexName = /^[A-Za-zÀ-ỹà-ỹ\s]+$/;
+      var words = value.split(/\s+/);
+
+      if (value === '') {
+        resulthoten.innerText = 'Vui lòng nhập họ và tên.';
+      } else if (!regexName.test(value)) {
+        resulthoten.innerText = 'Chỉ được dùng chữ cái và khoảng trắng.';
+      } else if (words.length < 2) {
+        resulthoten.innerText = 'Họ và tên phải có ít nhất 2 từ.';
+      } else {
+        resulthoten.innerText = 'Họ và tên hợp lệ.';
+      }
+    }
+    btnhoten.onclick = checkName;
+/// câu 6
+    var mabenh = document.getElementById("mabenh");
+    var btnmabenh = document.getElementById("btnmabenh");
+    var resultmabenh = document.getElementById("resultmabenh");
+
+    function checkMaBenh() {
+      var value = mabenh.value.trim();
+      var regexMaBenh = /^BN-\d{8}-\d{3}$/;
+
+      if (value === '') {
+        resultmabenh.innerText = 'Vui lòng nhập mã bệnh nhân.';
+      } else if (regexMaBenh.test(value)) {
+        resultmabenh.innerText = 'Mã bệnh nhân hợp lệ.';
+      } else {
+        resultmabenh.innerText = 'Mã không hợp lệ. Đúng định dạng: BN-YYYYMMDD-XXX';
+      }
+    }
+    btnmabenh.onclick = checkMaBenh;
+/// câu 7
+    var cccd = document.getElementById("cccd");
+    var btncccd = document.getElementById("btncccd");
+    var resultcccd = document.getElementById("resultcccd");
+
+    function checkCCCD() {
+      var value = cccd.value.trim();
+      var regexCCCD = /^(\d{9}|\d{12})$/;
+
+      if (value === '') {
+        resultcccd.innerText = 'Vui lòng nhập số CCCD hoặc CMND.';
+      } else if (regexCCCD.test(value)) {
+        resultcccd.innerText = 'Số CCCD/CMND hợp lệ.';
+      } else {
+        resultcccd.innerText = 'Sai định dạng. Phải gồm 9 hoặc 12 chữ số.';
+      }
+    }
+    btncccd.onclick = checkCCCD;
+/// câu 8
+    var inputmk = document.getElementById("mk");
+    var btnmk = document.getElementById("btnmk");
+    var loimk = document.getElementById("loimk");
+
+    function checkmk() {
+    var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    var logic = pattern.test(inputmk.value);
+    loimk.innerText = logic ? 'Mật khẩu của bạn đã đạt yêu cầu' : 'Mật khẩu chưa mạnh';
+    }
+    btnmk.onclick = checkmk;
+</script>
+</body>
+</html>
